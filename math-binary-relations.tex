@@ -1,10 +1,23 @@
-\documentclass{article}
+\documentclass[11pt]{article}
 
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{defn}{Definition}
+\theoremstyle{definition}
+\newtheorem*{example}{Example}
+
+\usepackage{multicol}
+\usepackage{enumitem}
+
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{epstopdf}
 
 \title{Some important binary relations}
 \author{Alberto Cortés \\ {\texttt <alcortesm@gmail.com>}}
@@ -14,6 +27,97 @@
 
 \maketitle
 
-\lipsum[1-7]
+\section{Binay Relations}
+
+In mathematics, a binary relation on a set $S$ is a collection of ordered pairs of elements of $A$.
+In other words, it is a subset of the Cartesian product $A^2 = A \times A$.
+More generally, a binary relation between two sets $S_1$ and $S_2$ is $\subseteq S_1 \times S_2$.
+
+\begin{example}
+  Let us say Alice is older than Bob, who is older than Carol,
+  denoted by $a$, $b$, and $c$ from now on.
+  If relation $R$ on set $S = \{a, b, c\}$ means ``is older than'', then $aRb, bRc$.
+\end{example}
+
+\begin{example}
+  Let us say relation $R = \text{``is smaller than''}$ on set $\mathbb{N}$,
+  then $\forall x \in \mathbb{N}, xR(x+1) \text{ and } \neg xRx$.
+\end{example}
+
+As binary relations are basically pairs, they can drawn as directed graphs.
+For instance, let $S = \{a, b\}$ and relation $R \subseteq S \times S$. Then $aRb$ can be drawn as:
+\begin{center}
+  \input{simple-graph.pdf_t}
+\end{center}
+
+
+\section{In Computer Science}
+
+TODO: explain computer representations: pairs and matrix.
+
+
+\section{Properties}
+
+\subsection{Reflexivity}
+
+\begin{defn}
+  Relation $R$ is \textbf{reflexive} $\iff \forall a \in S, aRa$.
+  For example ``is equal to'', ``is as tall as''.
+\end{defn}
+
+\begin{defn}
+  Relation $R$ is \textbf{irreflexive} $\iff \forall a \in S, \neg aRa$.
+  For example ``is greater than'', ``is to the left of''.
+\end{defn}
+
+\begin{defn}
+  Relation $R$ is \textbf{non-reflexive} $\iff R \text{ is neither reflexive nor irreflexive}$.
+  For example ``is grandfather of'', as you can be your own granfather,
+  see Ray Stevens song ``I am my own granpa'')
+\end{defn}
+
+\subsection{Transitivity}
+
+\begin{defn}
+  Relation $R$ is \textbf{transitive} $\iff \forall a \in S, aRa$.
+\end{defn}
+
+\begin{defn}
+  Relation $R$ is \textbf{intransitive} $\iff \forall a \in S, aRa$.
+\end{defn}
+
+\begin{defn}
+  Relation $R$ is \textbf{nontransitive} $\iff \forall a \in S, aRa$.
+\end{defn}
+
+
+\subsection{Symmetricity}
+
+\begin{defn}
+  Relation $R$ is \textbf{symmetric} $\iff \forall a \in S, aRa$.
+\end{defn}
+
+\begin{defn}
+  Relation $R$ is \textbf{asymmetric} $\iff \forall a \in S, aRa$.
+\end{defn}
+
+\begin{defn}
+  Relation $R$ is \textbf{antisymmetric} $\iff \forall a \in S, aRa$.
+\end{defn}
+
+\begin{defn}
+  Relation $R$ is \textbf{nonsymmetric} $\iff \forall a \in S, aRa$.
+\end{defn}
+
+\subsection{Equivalence}
+
+\begin{defn}
+  Relation $R$ is \textbf{equivalent} $\iff \forall a \in S, aRa$.
+\end{defn}
+
+
+\section{Transitive Clousures}
+
+TODO: explain transitive clousures.
 
 \end{document}

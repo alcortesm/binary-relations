@@ -18,8 +18,12 @@ all: ${name}.pdf
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 # missing file reference and interactively asking you for an alternative.
 
-${name}.pdf: ${name}.tex
-	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make $<
+${name}.pdf: ${name}.tex simple-graph.pdf_t
+	latexmk -pdf -latex="pdflatex -interaction=nonstopmode" -use-make $<
 
 clean:
 	latexmk -CA
+	$(MAKE) -C imgs-gen/simple-graph $@
+
+simple-graph.pdf_t: imgs-gen/simple-graph/fig.fig
+	$(MAKE) -C imgs-gen/simple-graph
