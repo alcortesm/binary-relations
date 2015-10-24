@@ -19,6 +19,17 @@
 \usepackage{graphicx}
 \usepackage{epstopdf}
 
+\usepackage{wasysym}
+
+\usepackage{listings}
+\lstdefinestyle{go}{
+  basicstyle=\footnotesize\ttfamily,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  tabsize=8,
+}
+
 \title{Some important binary relations}
 \author{Alberto Cortés \\ {\texttt <alcortesm@gmail.com>}}
 \date{\today}
@@ -29,34 +40,108 @@
 
 \section{Binay Relations}
 
-In mathematics, a binary relation on a set $S$ is a collection of ordered pairs of elements of $A$.
+In mathematics, a binary relation on a set $A$ is a collection of ordered pairs of elements of $A$.
 In other words, it is a subset of the Cartesian product $A^2 = A \times A$.
-More generally, a binary relation between two sets $S_1$ and $S_2$ is $\subseteq S_1 \times S_2$.
 
 \begin{example}
-  Let us say Alice is older than Bob, who is older than Carol,
-  denoted by $a$, $b$, and $c$ from now on.
-  If relation $R$ on set $S = \{a, b, c\}$ means ``is older than'', then $aRb, bRc$.
+  Let us say Alice ($a$) is older than Bob ($b$), who is older than Carol ($c$),
+  then $A = \left\{a, b, c\right\}$ and
+  there is a realtion $R =$ \textsl{``is older than''} on $A$.
+\end{example}
+
+More generally, a binary relation between two sets $A$ and $B$ is a subset of $A \times B$,
+this is $R \subseteq A \times B$,
+therefore a binary relation $R$ is usually defined as an ordered triple $(A, B, G)$
+where $A$ and $B$ are arbitrary sets, and $G \subseteq A \times B$.
+The set $A$ is called the \textbf{domain} of the relation,
+$B$ is called the \textbf{codomain} and
+$G$ is called the \textbf{graph}.
+
+The statement $(a,b) \in G$ is read ``\textsl{a is R-related to b}'',
+and is denoted by $aRb$ or $R(a,b)$.
+
+\begin{example}
+  Cotinuing the example above,
+  $aRb \land bRc$ means that
+  $a$ is older than $b$ and
+  $b$ is older than $c$,
 \end{example}
 
 \begin{example}
-  Let us say relation $R = \text{``is smaller than''}$ on set $\mathbb{N}$,
+  Let us say relation $R = \text{``is smaller than''}$ on the set $\mathbb{N}$,
   then $\forall x \in \mathbb{N}, xR(x+1) \text{ and } \neg xRx$.
 \end{example}
 
-As binary relations are basically pairs, they can drawn as directed graphs.
-For instance, let $S = \{a, b\}$ and relation $R \subseteq S \times S$. Then $aRb$ can be drawn as:
+
+\subsection{Common Representations}
+
+\paragraph{Graphs} As binary relations are basically pairs,
+they can be represented as directed graphs.
+For example,
+let $A = \left\{a, b, c, d\right\}$ and $R \subseteq A^2$.
+The graph for $aRb \land aRc \land cRd \land dRa \land dRd$ would be
 \begin{center}
   \input{simple-graph.pdf_t}
 \end{center}
 
+\paragraph{Arrays} Bynary relations can also be represented as arrays.
+For example,
+the previous graph can be represented in array form as:
+\begin{equation*}
+  R = \bordermatrix{~ & a & b & c & d \cr
+  a & 0 & 1 & 1 & 0 \cr
+  b & 0 & 0 & 0 & 0 \cr
+  c & 0 & 0 & 0 & 1 \cr
+d & 1 & 0 & 0 & 1 \cr}
+\end{equation*}
 
 \section{In Computer Science}
 
-TODO: explain computer representations: pairs and matrix.
+Binary relations are heavily used in computer science.
+As a relation is basically a pair,
+it can be easily represented as an array of 2 elements in any programming language.
 
+For example, the previous graph can be represented in Go as:
+
+\lstinputlisting[style=go]{src/simple-arrays/simple-arrays.go}
+
+Output: \verb+[a b] [a c] [c d] [d a] [d d]+
+
+Or you can use something a little more fancy by joining relations by source:
+
+\lstinputlisting[style=go]{src/map-slice/map-slice.go}
+
+Output: \verb+map[d:[a d] a:[a b] c:[d]]+
+
+This are just simple examples,
+actual implementations will depend on the particular problem you are trying to solve.
 
 \section{Properties}
+
+\subsection{Symmetricity}
+
+\begin{defn}
+  A \textbf{symmetric} relation can be defined as
+  \[ \forall a, b \in S: aRb \implies bRa .\]
+  For example ``is a sibling of'' (if Alice is a sibling of Bob, then Bob must be a sibling of Alice).
+\end{defn}
+
+\begin{defn}
+  An \textbf{asymmetric} relation can be defined as
+  \[ \forall a, b \in S: aRb \implies \neg bRa .\]
+  For example ``is taller than'' (if Alice is taller than Bob, then Bob cannot be taller than Alice).
+\end{defn}
+
+\begin{defn}
+  Relation $R$ is \textbf{antisymmetric} $\iff \forall a, b \in S: aRb \land bRa \implies a = b$.
+  For example ``is greater or equal to''.
+  Another way to express that is relation $R$ is antisymmetric $\iff \forall a, b \in S: aRb \land a \neq b \implies \neg bRa$.
+\end{defn}
+
+\begin{defn}
+  Relation $R$ is \textbf{nonsymmetric} $\iff$ $R$ is not symmetric, asymetric or antisymmetric.
+  For example ``is the brother of'' when you have males and females and brother $\neq$ sister).
+\end{defn}
 
 \subsection{Reflexivity}
 
@@ -71,48 +156,34 @@ TODO: explain computer representations: pairs and matrix.
 \end{defn}
 
 \begin{defn}
-  Relation $R$ is \textbf{non-reflexive} $\iff R \text{ is neither reflexive nor irreflexive}$.
+  Relation $R$ is \textbf{non-reflexive} $\iff R$ is neither reflexive nor irreflexive.
   For example ``is grandfather of'', as you can be your own granfather,
-  see Ray Stevens song ``I am my own granpa'')
+  see Ray Stevens song ``I am my own granpa'' \smiley.
 \end{defn}
 
 \subsection{Transitivity}
 
 \begin{defn}
-  Relation $R$ is \textbf{transitive} $\iff \forall a \in S, aRa$.
+  Relation $R$ is \textbf{transitive} $\iff \forall a, b, c \in S: aRb \land bRc \implies aRc$.
+  For example ``is descendant of''.
 \end{defn}
 
 \begin{defn}
-  Relation $R$ is \textbf{intransitive} $\iff \forall a \in S, aRa$.
+  Relation $R$ is \textbf{intransitive} $\iff \forall a, b, c \in S: aRa \land bRc \implies \neg aRc$.
+  For example ``is complementary color of'' or ``is opposite of''.
 \end{defn}
 
 \begin{defn}
-  Relation $R$ is \textbf{nontransitive} $\iff \forall a \in S, aRa$.
+  Relation $R$ is \textbf{nontransitive} if it neither transitive nor intransitive.
+  For example ``is child of'' (Antigore, Oedipus and Jocarta).
 \end{defn}
 
-
-\subsection{Symmetricity}
-
-\begin{defn}
-  Relation $R$ is \textbf{symmetric} $\iff \forall a \in S, aRa$.
-\end{defn}
-
-\begin{defn}
-  Relation $R$ is \textbf{asymmetric} $\iff \forall a \in S, aRa$.
-\end{defn}
-
-\begin{defn}
-  Relation $R$ is \textbf{antisymmetric} $\iff \forall a \in S, aRa$.
-\end{defn}
-
-\begin{defn}
-  Relation $R$ is \textbf{nonsymmetric} $\iff \forall a \in S, aRa$.
-\end{defn}
 
 \subsection{Equivalence}
 
 \begin{defn}
-  Relation $R$ is \textbf{equivalent} $\iff \forall a \in S, aRa$.
+  Relation $R$ is \textbf{equivalent} $\iff$ $R$ is reflexive, symmetric and transitive.
+  For example ``is confruent to''\footnote{two numbers are congruent if they have the same remainder when divided by some other number.} or ``is equal to''.
 \end{defn}
 
 
