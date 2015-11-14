@@ -31,14 +31,15 @@
 }
 
 \title{Some important binary relations}
-\author{Alberto Cortés \\ {\texttt <alcortesm@gmail.com>}}
+\author{Alberto Cortés \\ {\texttt <alcortesm@gmail.com>}\\
+Gorka Guardiola Múzquiz \\ {\texttt <paurea@gmail.com>}}
 \date{\today}
 
 \begin{document}
 
 \maketitle
 
-\section{Binay Relations}
+\section{Binary Relations}
 
 In mathematics, a binary relation on a set $A$ is a collection of ordered pairs of elements of $A$.
 In other words, it is a subset of the Cartesian product $A^2 = A \times A$.
@@ -84,7 +85,7 @@ The graph for $aRb \land aRc \land cRd \land dRa \land dRd$ would be
   \input{simple-graph.pdf_t}
 \end{center}
 
-\paragraph{Arrays} Bynary relations can also be represented as arrays.
+\paragraph{Arrays} Binary relations can also be represented as arrays.
 For example,
 the previous graph can be represented in array form as:
 \begin{equation*}
@@ -115,6 +116,8 @@ Output: \verb+map[d:[a d] a:[a b] c:[d]]+
 
 This are just simple examples,
 actual implementations will depend on the particular problem you are trying to solve.
+Anything which can be interpreted as an arrow in a directed graph graph can be mapped into the pair of a relation.
+A pointer from a data structure identifying the origin and  traversing an array or a map (which goes from index to element) are all examples of this.
 
 \section{Properties}
 
@@ -183,12 +186,22 @@ actual implementations will depend on the particular problem you are trying to s
 
 \begin{defn}
   Relation $R$ is \textbf{equivalent} $\iff$ $R$ is reflexive, symmetric and transitive.
-  For example ``is confruent to''\footnote{two numbers are congruent if they have the same remainder when divided by some other number.} or ``is equal to''.
+  For example ``is congruent to''\footnote{two numbers are congruent if they have the same remainder when divided by some other number.} or ``is equal to''.
 \end{defn}
 
+\subsection{Transitive Closure}
 
-\section{Transitive Clousures}
+\begin{defn}
+ Given a relation $R$ over a set $S$, its transitive closure is the smallest transitive relation containing $R$.
+\end{defn}
 
-TODO: explain transitive clousures.
+To obtain the \textbf{transitive closure}, $tr(R)$, take all elements $\alpha_i \in R$ which are on the left side of a tuple in $R$.
+For any element $\beta_i$ which is \textbf{reachable} following the relation $R$, the tuple $(\alpha_i, \beta_i) \in tr(R)$.
+In the case of an equivalence, taking only one $\alpha_i$ gives back all the tuples in the transitive closure.
+This is because $(\alpha_i, \beta_i) \implies (\beta_i, \alpha_i)$ and \emph{all the elements are reachable}.
+In other words, for an equivalence \emph{all elements represent the relation equally}.
+This permits us to form an \textbf{equivalence class}, where we look at the set $S$ through the lense of $R$.
+The \emph{equivalence class}, is a smaller or equal set where each element is a representative of a distinct equivalent subset of $S$.
 
+TODO draw all this with graphs, possibly using graphviz (dot).
 \end{document}
