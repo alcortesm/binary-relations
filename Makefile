@@ -24,6 +24,7 @@ ${name}.pdf: ${name}.tex simple-graph.pdf_t
 clean:
 	latexmk -CA
 	$(MAKE) -C imgs-gen/simple-graph $@
+	- rm -rf img
 
 simple-graph.pdf_t: imgs-gen/simple-graph/fig.fig
 	$(MAKE) -C imgs-gen/simple-graph

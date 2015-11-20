@@ -2,7 +2,7 @@ name := $(shell basename $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
 fig = fig.fig
 bak = fig.fig.bak
-install_dir := ../..
+install_dir := ../../img
 tex := $(install_dir)/$(name).pdf_t
 pdf := $(install_dir)/$(name).pdf
 
