@@ -1,3 +1,4 @@
 [submodule "src/binrels"]
 	path = src/binrels
 	url = git@github.com:alcortesm/binrels.git
+	branch = master
