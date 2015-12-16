@@ -1,0 +1,14 @@
+/*
+	dot -Tpdf -orefl.pdf refl.dot
+*/
+
+digraph refl {
+	a->a;
+	b->b;
+	c->c;
+	a->b;
+	b->a;
+	d->a;
+	d->c;
+	c->d;
+}

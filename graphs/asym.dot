@@ -1,0 +1,9 @@
+/*
+	dot -Tpdf -oasym.pdf asym.dot
+*/
+
+digraph asym {
+	a->b;
+	a->d;
+	d->c;
+}

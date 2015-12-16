@@ -130,10 +130,10 @@ A pointer from a data structure identifying the origin and  traversing an array 
   \[ \forall a, b \in S: aRb \implies bRa .\]
   For example ``is a sibling of'' (if Alice is a sibling of Bob, then Bob must be a sibling of Alice).
   Another example would be the relation depicted by the graph in Figure~\ref{fig:sym}.
-  \begin{figure}[th!]\label{fig:sym}
+  \begin{figure}[th!]
     \centering
     \includegraphics[width=0.3\textwidth,keepaspectratio]{sym_dot.pdf}
-    \caption{Symmetric relation.}
+    \caption{Symmetric relation.\label{fig:sym}}
   \end{figure}
   Note that there is an opposite arrow for each arrow.
 \end{defn}
@@ -142,12 +142,28 @@ A pointer from a data structure identifying the origin and  traversing an array 
   An \textbf{asymmetric} relation can be defined as
   \[ \forall a, b \in S: aRb \implies \neg bRa .\]
   For example ``is taller than'' (if Alice is taller than Bob, then Bob cannot be taller than Alice).
+  Another example would be the relation depicted by the graph in Figure~\ref{fig:asym}.
+  Note that there is never an opposite arrow for any given arrow.
+
+  \begin{figure}[th!]
+    \centering
+    \includegraphics[width=0.3\textwidth,keepaspectratio]{asym_dot.pdf}
+    \caption{Asymmetric relation.\label{fig:asym}}
+  \end{figure}
 \end{defn}
 
 \begin{defn}
   Relation $R$ is \textbf{antisymmetric} $\iff \forall a, b \in S: aRb \land bRa \implies a = b$.
   For example ``is greater or equal to''.
   Another way to express that is relation $R$ is antisymmetric $\iff \forall a, b \in S: aRb \land a \neq b \implies \neg bRa$.
+  Another example would be the relation depicted by the graph in Figure~\ref{fig:antisym}.
+  Note that the only arrows having and opposite arrow are the ones from a node to itself.
+
+  \begin{figure}[th!]
+    \centering
+    \includegraphics[width=0.3\textwidth,keepaspectratio]{antisym_dot.pdf}
+    \caption{Antisymmetric relation.\label{fig:antisym}}
+  \end{figure}
 \end{defn}
 
 \begin{defn}
@@ -160,6 +176,13 @@ A pointer from a data structure identifying the origin and  traversing an array 
 \begin{defn}
   Relation $R$ is \textbf{reflexive} $\iff \forall a \in S, aRa$.
   For example ``is equal to'', ``is as tall as''.
+  Another example would be the relation depicted by the graph in Figure~\ref{fig:refl}.
+  Note that the only arrows having and opposite arrow are the ones from a node to itself.
+  \begin{figure}[th!]
+    \centering
+    \includegraphics[width=0.3\textwidth,keepaspectratio]{refl_dot.pdf}
+    \caption{Reflexive relation.\label{fig:refl}}
+  \end{figure}
 \end{defn}
 
 \begin{defn}

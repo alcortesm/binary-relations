@@ -1,0 +1,11 @@
+/*
+	dot -Tpdf -oantisym.pdf antisym.dot
+*/
+
+digraph antisym {
+	a->a;
+	a->b;
+	a->d;
+	d->c;
+	c->c;
+}
