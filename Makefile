@@ -1,5 +1,10 @@
 name = binary-relations
 
+
+graphs := $(wildcard graphs/*.dot)
+graphsdir := $(subst graphs,img,$(graphs))
+graphsobj := $(graphsdir:.dot=_dot.pdf)
+
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
 # file of the given name existing.
@@ -18,7 +23,7 @@ all: ${name}.pdf
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 # missing file reference and interactively asking you for an alternative.
 
-${name}.pdf: ${name}.tex simple-graph.pdf_t
+${name}.pdf: ${name}.tex simple-graph.pdf_t ${graphsobj}
 	latexmk -pdf -latex="pdflatex -interaction=nonstopmode" -use-make $<
 
 clean:
@@ -28,3 +33,7 @@ clean:
 
 simple-graph.pdf_t: imgs-gen/simple-graph/fig.fig
 	$(MAKE) -C imgs-gen/simple-graph
+
+
+img/%_dot.pdf: graphs/%.dot
+	dot -Tpdf -o$@  $<

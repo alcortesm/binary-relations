@@ -1,0 +1,12 @@
+/*
+	dot -Tpdf -osym.pdf sym.dot
+*/
+
+digraph sym {
+	a->b;
+	b->a;
+	a->d;
+	d->a;
+	d->c;
+	c->d;
+}

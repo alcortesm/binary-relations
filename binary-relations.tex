@@ -101,7 +101,7 @@ This matrix is called incidence matrix of the graph.
 \section{In Computer Science}
 
 Binary relations are heavily used in computer science.
-As a relation is basically a pair,
+As each relation is basically a pair,
 it can be easily represented as an array of 2 elements in any programming language.
 
 For example, the previous graph can be represented in Go as:
@@ -129,6 +129,13 @@ A pointer from a data structure identifying the origin and  traversing an array 
   A \textbf{symmetric} relation can be defined as
   \[ \forall a, b \in S: aRb \implies bRa .\]
   For example ``is a sibling of'' (if Alice is a sibling of Bob, then Bob must be a sibling of Alice).
+  Another example would be the relation depicted by the graph in Figure~\ref{fig:sym}.
+  \begin{figure}[th!]\label{fig:sym}
+    \centering
+    \includegraphics[width=0.3\textwidth,keepaspectratio]{sym_dot.pdf}
+    \caption{Symmetric relation.}
+  \end{figure}
+  Note that there is an opposite arrow for each arrow.
 \end{defn}
 
 \begin{defn}
