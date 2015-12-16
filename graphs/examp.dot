@@ -1,0 +1,11 @@
+/*
+	dot -Tpdf -oexamp.pdf examp.dot
+*/
+
+digraph examp {
+	a->b;
+	a->c;
+	c->d;
+	d->a;
+	d->d;
+}
